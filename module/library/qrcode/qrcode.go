@@ -8,13 +8,12 @@ import (
 	"image/png"
 )
 
-func ToPng(contentString string, width int, height int) *bytes.Buffer{
+func ToPng(contentString string, width int, height int) *bytes.Buffer {
 	qrCode, err := qr.Encode(contentString, qr.M, qr.Auto)
 	qrCode, err = barcode.Scale(qrCode, width, height)
-	log.Info(contentString)
 	// create the output file
-	bytePng  := new(bytes.Buffer)
-	err=png.Encode(bytePng,qrCode)
+	bytePng := new(bytes.Buffer)
+	err = png.Encode(bytePng, qrCode)
 	if err != nil {
 		log.Error(err)
 	}
@@ -24,11 +23,11 @@ func ToPng(contentString string, width int, height int) *bytes.Buffer{
 	}
 	return bytePng
 }
-func NoToPng(contentString string) *bytes.Buffer{
+func NoToPng(contentString string) *bytes.Buffer {
 	qrCode, err := qr.Encode(contentString, qr.M, qr.Auto)
 	// create the output file
-	bytePng  := new(bytes.Buffer)
-	err=png.Encode(bytePng,qrCode)
+	bytePng := new(bytes.Buffer)
+	err = png.Encode(bytePng, qrCode)
 	if err != nil {
 		log.Error(err)
 	}
